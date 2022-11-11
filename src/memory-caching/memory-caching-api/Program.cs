@@ -11,6 +11,7 @@ namespace memory_caching_api
             builder.Services.AddControllers();
 
             builder.Services.AddMemoryCache();
+            builder.Services.AddSingleton<IDataService, DataService>();
 
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();

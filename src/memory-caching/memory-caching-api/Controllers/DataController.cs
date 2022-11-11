@@ -18,12 +18,17 @@ namespace memory_caching_api.Controllers
         }
 
         // GET api/<DataController>/5
-        [HttpGet("{id}")]
-        public string Get(string key)
+        [HttpGet("{key}")]
+        public IActionResult Get(string key)
         {
-            var data = !string.IsNullOrEmpty(key) ? _dataService.Get(key) : null;
+            if(string.IsNullOrEmpty(key))
+            {
+                return BadRequest();
+            }
 
-            return data;
+            var data = _dataService.Get(key);
+
+            return data == null ? NotFound() : new OkObjectResult(data);
         }
 
         // POST api/<DataController>

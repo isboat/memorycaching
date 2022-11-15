@@ -54,7 +54,7 @@ namespace memory_caching_api.Controllers
                 return BadRequest();
             }
 
-            _dataService.Upsert(model.Key, model.Value);
+            _dataService.Upsert(model.Key, model.Value, TimeSpan.FromSeconds(20));
 
             return Ok();
         }
